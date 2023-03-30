@@ -1,0 +1,49 @@
+{
+  "name": "@package/web",
+  "version": "0.0.1",
+  "license": "GPL-3.0",
+  "author": "Elias Mawa <elias@emawa.io>",
+  "homepage": "https://github.com/theluckyegg/stagcss#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theluckyegg/stagcss.git",
+    "directory": "packages/utilities"
+  },
+  "scripts": {
+    "lint": "echo 'linting @package/web' && eslint .",
+    "prettier": "echo 'formatting @package/web' && yarn prettier  --plugin-search-dir . --write . --check .",
+    "test": "echo 'test @package/web' && yarn test:unit && yarn test:web",
+    "test:unit": "echo 'test:unit @package/web' && vitest",
+    "test:web": "echo 'test:web @package/web' && playwright test",
+    "watch": "ts-node ./src/server.ts",
+    "serve": "echo 'serving @package/web' && yarn watch",
+    "build": "echo 'building @package/web' && tsc && vite build",
+    "start": "echo 'starting @package/web' && cross-env NODE_ENV=production node ./dist/cjs/server.js"
+  },
+  "dependencies": {
+    "@emotion/is-prop-valid": "~1.2.0",
+    "@emotion/react": "~11.10.5",
+    "@emotion/styled": "~11.10.5",
+    "@playwright/test": "^1.28.1",
+    "compression": "^1.7.4",
+    "cross-env": "^7.0.3",
+    "express": "^4.18.1",
+    "react": "~18.2.0",
+    "react-dom": "~18.2.0",
+    "sirv": "^2.0.2"
+  },
+  "devDependencies": {
+    "@emotion/babel-plugin": "~11.10.5",
+    "@types/compression": "^1.7.2",
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.10",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^2.0.1",
+    "sass": "~1.56.2",
+    "ts-node": "~10.9.1",
+    "typescript": "~5.0.2",
+    "vite": "~4.2.1",
+    "vite-plugin-ssr": "^0.4.60"
+  }
+}

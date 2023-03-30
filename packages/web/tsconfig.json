@@ -1,0 +1,33 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "react-jsx",
+    "types": ["vite/client", "react"],
+    "paths": {
+      "@assets": ["src/assets"],
+      "@assets/*": ["src/assets/*"],
+      "@components": ["src/components"],
+      "@components/*": ["src/components/*"],
+      "@hooks": ["src/hooks"],
+      "@hooks/*": ["src/hooks/*"],
+      "@pages": ["src/pages"],
+      "@pages/*": ["src/pages/*"]
+    }
+  },
+  "ts-node": {
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
+  "include": [
+    "./src/**/*",
+    "./typings/**/*.d.ts",
+    "../../typings/**/*.d.ts",
+    "vite-env.d.ts",
+    "vite.config.ts"
+    // "api/vite-env.d.ts"
+  ]
+}
