@@ -1,2 +1,1 @@
-# preact-keystone
-monorepo template using preact &amp; keystone 6
+# preact-keystone template

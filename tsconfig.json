@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    /* lib options */
+    "target": "es2020",
+    "module": "es2020",
+    "moduleResolution": "node",
+
+    /* build options */
+    "incremental": true,
+    "noEmit": true,
+    "allowJs": false,
+    "checkJs": false,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "skipLibCheck": true,
+    "useDefineForClassFields": true,
+
+    /* typechecking options */
+    "strict": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": true,
+    "noImplicitAny": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
+    /* module resolution options */
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+
+    /* other options */
+    "types": ["@types/node"]
+  },
+  "exclude": ["node_modules", "/**/*.spec.ts"],
+  "include": ["./typings/**/*.d.ts"]
+}
