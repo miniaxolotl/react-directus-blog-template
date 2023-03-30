@@ -60,6 +60,13 @@ services:
       - HOST=0.0.0.0
       - PORT=${CMS_PORT}
 
+      # Lockdown in production
+      - "CORS_ENABLED=true"
+      - "CORS_ORIGIN=*"
+      # - "CORS_ORIGIN=${DIRECTUS_CORS_ORIGIN}"
+      - "CORS_ALLOWED_HEADERS=*"
+      # - "CORS_ALLOWED_HEADERS=${DIRECTUS_CORS_ALLOWED_HEADERS}"
+
       - "EMAIL_VERIFY_SETUP=true"
       - "EMAIL_FROM=${DIRECTUS_EMAIL_FROM}"
       - "EMAIL_TRANSPORT=${DIRECTUS_EMAIL_TRANSPORT}"
