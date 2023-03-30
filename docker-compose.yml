@@ -46,6 +46,7 @@ services:
       - "MONGO_INITDB_ROOT_PASSWORD=${DATABASE_PASSWORD}"
   directus:
     image: directus/directus:latest
+    restart: always
     ports:
       - "${CMS_PORT:-8055}:${CMS_PORT:-8055}"
     volumes:
