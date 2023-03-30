@@ -56,8 +56,7 @@ services:
       - "KEY=${DIRECTUS_KEY}"
       - "SECRET=${DIRECTUS_SECRET}"
 
-      # - PUBLIC_URL=${CMS_HOST}
-      # - HOST=${CMS_HOST}
+      - HOST=0.0.0.0
       - PORT=${CMS_PORT}
 
       - "EMAIL_VERIFY_SETUP=true"
