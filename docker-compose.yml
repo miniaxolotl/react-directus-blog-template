@@ -74,7 +74,7 @@ services:
 
       - "DB_CLIENT=mysql"
       - "DB_HOST=${MYSQL_HOST}"
-      - "DB_DATABASE=${DATABASE_SCHEMA}"
+      - "DB_DATABASE=${MYSQL_SCHEMA}"
       - "DB_PORT=${MYSQL_PORT}"
       - "DB_USER=${MYSQL_USER}"
       - "DB_PASSWORD=${MYSQL_PASSWORD}"
