@@ -2,8 +2,7 @@ version: "3.6"
 
 volumes:
   directus:
-  directus-uploads:
-  directus-cache:
+  directus-files:
   # meilisearch:
   # mariadb:
   # mongodb:
@@ -50,7 +49,7 @@ services:
     ports:
       - "${CMS_PORT:-8055}:${CMS_PORT:-8055}"
     volumes:
-      - directus-uploads:/directus/uploads
+      - directus-files:/directus/uploads
       - directus:/directus/extensions
       - directus:/directus/database
     environment:
@@ -59,6 +58,7 @@ services:
 
       - HOST=0.0.0.0
       - PORT=${CMS_PORT}
+      - PUBLIC_URL=${DIRECTUS_PUBLIC_URL}
 
       # Lockdown in production
       - "CORS_ENABLED=true"
@@ -74,22 +74,28 @@ services:
 
       - "DB_CLIENT=mysql"
       - "DB_HOST=${MYSQL_HOST}"
-      - "DB_DATABASE=${MYSQL_SCHEMA}"
+      - "DB_DATABASE=${DATABASE_SCHEMA}"
       - "DB_PORT=${MYSQL_PORT}"
       - "DB_USER=${MYSQL_USER}"
       - "DB_PASSWORD=${MYSQL_PASSWORD}"
 
-      - "DIRECTUS_STORAGE_LOCATIONS=s3,local,volume"
-      - "STORAGE_LOCAL_ROOT=./local"
-      - "STORAGE_VOLUME_ROOT=./volume"
-      - "STORAGE_S3_ACL=FULL_CONTROL"
-      - "STORAGE_S3_ROOT=${APPNAME}"
-      - "STORAGE_S3_HEALTHCHECK_THRESHOLD=750"
-      - "STORAGE_S3_ENDPOINT=https://${S3_ENDPOINT}"
-      - "STORAGE_S3_REGION=${S3_REGION}"
-      - "STORAGE_S3_BUCKET=${S3_BUCKET}"
-      - "STORAGE_S3_KEY=${S3_ACCESS_KEY}"
-      - "STORAGE_S3_SECRET=${S3_SECRET_KEY}"
+      - STORAGE_LOCATIONS=cloud,external,local
 
-      - "ADMIN_EMAIL=${DIRECTUS_ADMIN_EMAIL}"
-      - "ADMIN_PASSWORD=${DIRECTUS_ADMIN_PASSWORD}"
+      - STORAGE_LOCAL_DRIVER=local
+      - STORAGE_LOCAL_ROOT=uploads
+      - STORAGE_EXTERNAL_DRIVER=local
+      - STORAGE_EXTERNAL_ROOT=external
+
+      - "STORAGE_CLOUD_DRIVER=s3"
+      - "STORAGE_CLOUD_ACL=public-read"
+      - "STORAGE_CLOUD_ROOT=/${APPNAME}"
+      # - "STORAGE_CLOUD_FORCE_PATH_STYLE=true"
+      # - "STORAGE_CLOUD_HEALTHCHECK_THRESHOLD=750"
+      - STORAGE_CLOUD_ENDPOINT=https://${S3_ENDPOINT}
+      - STORAGE_CLOUD_REGION=${S3_REGION}
+      - STORAGE_CLOUD_BUCKET=${S3_BUCKET}
+      - "STORAGE_CLOUD_KEY=${S3_ACCESS_KEY}"
+      - "STORAGE_CLOUD_SECRET=${S3_SECRET_KEY}"
+
+      - ADMIN_EMAIL=${DIRECTUS_ADMIN_EMAIL}
+      - ADMIN_PASSWORD=${DIRECTUS_ADMIN_PASSWORD}
