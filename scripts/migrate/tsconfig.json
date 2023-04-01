@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "module": "commonjs"
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./typings/**/*.d.ts",
+    "../../typings/**/*.d.ts",
+    "typings/types"
+  ],
+  "exclude": ["./node_modules/", "./dist/**/*"]
+}

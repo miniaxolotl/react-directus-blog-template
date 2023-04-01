@@ -9,7 +9,7 @@ export const config: UserConfig = {
     alias: [
       {
         find: "@assets",
-        replacement: path.resolve(__dirname, "assets"),
+        replacement: path.resolve(__dirname, "src/assets"),
       },
       {
         find: "@components",
@@ -22,6 +22,10 @@ export const config: UserConfig = {
       {
         find: "@pages",
         replacement: path.resolve(__dirname, "src/pages"),
+      },
+      {
+        find: "@renderer",
+        replacement: path.resolve(__dirname, "src/renderer"),
       },
     ],
   },

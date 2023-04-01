@@ -9,6 +9,7 @@
     "url": "git+https://github.com/theluckyegg/stagcss.git",
     "directory": "packages/utilities"
   },
+  "type": "module",
   "scripts": {
     "lint": "echo 'linting @package/web' && eslint .",
     "prettier": "echo 'formatting @package/web' && yarn prettier  --plugin-search-dir . --write . --check .",
@@ -17,20 +18,28 @@
     "test:web": "echo 'test:web @package/web' && playwright test",
     "watch": "ts-node ./src/server.ts",
     "serve": "echo 'serving @package/web' && yarn watch",
-    "build": "echo 'building @package/web' && tsc && vite build",
-    "start": "echo 'starting @package/web' && cross-env NODE_ENV=production node ./dist/cjs/server.js"
+    "optimize": "echo 'optimize @package/web:client' && cross-env NODE_ENV=production vite optimize",
+    "build": "echo 'build @package/web:client' && cross-env NODE_ENV=production vite build",
+    "preview": "echo 'preview @package/web' && cross-env NODE_ENV=production yarn vite preview",
+    "start": "echo 'starting @package/web' && cross-env NODE_ENV=production yarn watch"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "~1.2.0",
     "@emotion/react": "~11.10.5",
     "@emotion/styled": "~11.10.5",
-    "@playwright/test": "^1.28.1",
-    "compression": "^1.7.4",
-    "cross-env": "^7.0.3",
-    "express": "^4.18.1",
+    "@lib/config": "~0.0.1",
+    "@lib/stande": "~0.0.1",
+    "@mantine/core": "~6.0.5",
+    "@mantine/hooks": "~6.0.5",
+    "@playwright/test": "~1.28.1",
+    "compression": "~1.7.4",
+    "cross-env": "~7.0.3",
+    "evergreen-ui": "~7.1.5",
+    "express": "~4.18.2",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
-    "sirv": "^2.0.2"
+    "react-icons": "^4.8.0",
+    "sirv": "~2.0.2"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "~11.10.5",
