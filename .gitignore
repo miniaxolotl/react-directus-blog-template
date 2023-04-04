@@ -9,6 +9,7 @@ node_modules/
 coverage/
 /**/build/
 /**/dist/
+.rollup.cache/
 
 /.yarn/*
 !/.yarn/patches

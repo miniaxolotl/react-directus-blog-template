@@ -1,19 +1,12 @@
 version: "3.6"
 
-volumes:
-  directus:
-  directus-files:
-  # meilisearch:
-  # mariadb:
-  # mongodb:
-
 services:
   maria:
     image: mariadb:10.7.1-focal
     ports:
       - "${DB_PORT:-3306}:${DB_PORT:-3306}"
-    # volumes:
-    #   - mariadb:/var/lib/mysql
+    volumes:
+      - ./data/mariadb:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
@@ -28,7 +21,7 @@ services:
     ports:
       - "${MEILISEARCH_PORT:-7700}:${MEILISEARCH_PORT:-7700}"
     # volumes:
-    #   - meilisearch:/tmp/${APPNAME}/meilisearch
+    #   - ./data/meilisearch:
     environment:
       - "MEILI_MASTER_KEY=${MEILISEARCH_MASTER_KEY}"
 
@@ -37,21 +30,22 @@ services:
     restart: always
     ports:
       - "${MONGO_PORT:-27017}:${MONGO_PORT:-27017}"
-    # volumes:
-    #   - mongodb:/data/db
+    volumes:
+      - ./data/mongodb:/data/db
     environment:
-      - "MONGO_INITDB_DATABASE=${DATABASE_SCHEMA}"
-      - "MONGO_INITDB_ROOT_USERNAME=${DATABASE_USER}"
-      - "MONGO_INITDB_ROOT_PASSWORD=${DATABASE_PASSWORD}"
+      - "MONGO_INITDB_DATABASE=${MYSQL_SCHEMA}"
+      - "MONGO_INITDB_ROOT_USERNAME=${MYSQL_USER}"
+      - "MONGO_INITDB_ROOT_PASSWORD=${MYSQL_PASSWORD}"
   directus:
     image: directus/directus:latest
     restart: always
     ports:
       - "${CMS_PORT:-8055}:${CMS_PORT:-8055}"
     volumes:
-      - directus-files:/directus/uploads
-      - directus:/directus/extensions
-      - directus:/directus/database
+      - ./data/directus/uploads:/directus/uploads
+      - ./data/directus/database:/directus/database
+      - ./packages/directus/extentions:/directus/extensions
+      - ./packages/directus/modules:/directus/modules
     environment:
       - "KEY=${DIRECTUS_KEY}"
       - "SECRET=${DIRECTUS_SECRET}"

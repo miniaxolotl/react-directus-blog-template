@@ -43,12 +43,17 @@
     "watch": "yarn workspaces foreach -j unlimited -pi --from '@lib/*' run watch",
     "watch:libs": "yarn workspaces foreach -j unlimited -pi --from '@lib/*' run watch",
     "serve:web": "yarn workspace @package/web run serve",
+    "serve:cms": "yarn workspace @package/cms run develop",
     "serve:keystone": "yarn workspace @package/keystone run serve",
-    "build": "yarn workspaces foreach -ti --from '{@lib/*,@package/*}' run build",
-    "build:cjs": "yarn workspaces foreach -pti --from '@lib/*' run build:cjs",
+    "rollup": "yarn workspaces foreach -ti --from '{@lib/*,@package/*}' run rollup",
+    "rollup:watch": "yarn workspaces foreach -j unlimited -pi --from '@lib/*' run rollup:watch",
+    "optimize:web": "yarn workspace @package/web optimize",
+    "build": "yarn workspaces foreach -ti --from '{@lib/*,@package/*}' run rollup",
     "build:web": "yarn workspace @package/web build",
+    "preview:web": "yarn workspace @package/web preview",
     "start": "yarn workspaces foreach -pti --from '{@lib/*}' run start",
-    "start:web": "yarn workspace @package/web serve"
+    "start:web": "yarn workspace @package/web start",
+    "script:migrate": "yarn workspace @script/migrate start"
   },
   "dependencies": {
     "eslint-plugin-prettier": "~4.2.1",
