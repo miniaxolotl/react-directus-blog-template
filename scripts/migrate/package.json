@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@script/migrate",
+  "version": "0.0.1",
+  "license": "GPL-3.0",
+  "author": "Elias Mawa <elias@emawa.io>",
+  "scripts": {
+    "lint": "echo 'linting @script/migrate' && eslint . --ext .js,.ts",
+    "prettier": "yarn prettier --write",
+    "start": "cross-env NODE_ENV=production ts-node src/index.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@lib/config": "~0.0.1",
+    "@lib/stande": "~0.0.1"
+  }
+}
