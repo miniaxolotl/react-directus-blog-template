@@ -5,13 +5,13 @@
   "packageManager": "yarn@3.3.1",
   "license": "GPL-3.0",
   "author": "Elias Mawa <elias@emawa.io>",
-  "homepage": "https://github.com/CelestialStag/stag#readme",
+  "homepage": "https://github.com/celestialstag/react-directus-template#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CelestialStag/stag.git"
+    "url": "git+https://github.com/celestialstag/react-directus-template.git"
   },
   "bugs": {
-    "url": "https://github.com/CelestialStag/stag/issues"
+    "url": "https://github.com/celestialstag/react-directus-template/issues"
   },
   "engines": {
     "node": ">16.14.0 <17.0.0"
@@ -56,6 +56,8 @@
     "script:migrate": "yarn workspace @script/migrate start"
   },
   "dependencies": {
+    "cross-env": "~7.0.3",
+    "dotenv": "~16.0.3",
     "eslint-plugin-prettier": "~4.2.1",
     "nodemon": "~2.0.20"
   },
