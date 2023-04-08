@@ -1,0 +1,12 @@
+{
+  "name": "@package/web",
+  "version": "0.0.1",
+  "license": "GPL-3.0",
+  "author": "Elias Mawa <elias@emawa.io>",
+  "homepage": "https://github.com/celestialstag/react-directus-template#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/celestialstag/react-directus-template.git",
+    "directory": "packages/cms"
+  }
+}
