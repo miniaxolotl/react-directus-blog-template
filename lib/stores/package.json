@@ -1,0 +1,37 @@
+{
+  "name": "@lib/stores",
+  "version": "0.0.1",
+  "license": "GPL-3.0",
+  "author": "Elias Mawa <elias@emawa.io>",
+  "private": true,
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/cjs/index.d.ts",
+  "scripts": {
+    "lint": "echo 'linting @lib/stores' && eslint . --ext .js,.ts",
+    "prettier": "yarn prettier --write",
+    "clean": "echo 'clean @lib/stores' && rm -rf ./dist** ||:",
+    "rollup": "echo 'bundle @lib/stores' && rollup -c --bundleConfigAsCjs",
+    "rollup:watch": "nodemon --watch 'src/' --delay 2000ms -e ts,tsx --exec yarn rollup",
+    "watch": "echo 'watching @lib/stores' && nodemon --watch 'src/' -e ts,tsx --exec yarn build",
+    "build": "NODE_stores=production && yarn build:cjs",
+    "build:cjs": "NODE_stores=production && echo 'building @lib/stores:cjs' && tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@lib/config": "~0.0.1",
+    "@lib/stande": "~0.0.1",
+    "@ngneat/elf": "~2.3.1",
+    "@ngneat/elf-entities": "~4.4.4",
+    "immer": "~9.0.21"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "~15.0.1",
+    "@rollup/plugin-typescript": "~10.0.1",
+    "rollup": "~3.10.0",
+    "rollup-plugin-dts": "~5.3.0",
+    "rollup-plugin-terser": "~7.0.2",
+    "ts-node": "~10.9.1",
+    "typescript": "~4.9.4"
+  }
+}
