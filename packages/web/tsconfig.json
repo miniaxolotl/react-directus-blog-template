@@ -2,8 +2,15 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    /* lib options */
+    "target": "es2020",
+    "module": "es2020",
+    "moduleResolution": "node",
+
+    /* build options */
+    "jsx": "react",
+
     "lib": ["dom", "dom.iterable", "esnext"],
-    "jsx": "react-jsx",
     "types": ["vite/client", "react"],
     "paths": {
       "@assets": ["src/assets"],
@@ -13,13 +20,18 @@
       "@hooks": ["src/hooks"],
       "@hooks/*": ["src/hooks/*"],
       "@pages": ["src/pages"],
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@renderer": ["src/renderer"],
+      "@renderer/*": ["src/renderer/*"],
+      "@stores": ["src/stores"],
+      "@stores/*": ["src/stores/*"]
     }
   },
   "ts-node": {
     "transpileOnly": true,
+    "esm": true,
     "compilerOptions": {
-      "module": "commonjs"
+      "moduleResolution": "node16"
     }
   },
   "include": [
