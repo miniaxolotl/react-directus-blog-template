@@ -1,1 +1,1 @@
-# preact-keystone template
+# react-directus-template
