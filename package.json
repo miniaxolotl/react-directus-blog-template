@@ -28,6 +28,8 @@
   ],
   "scripts": {
     "lint": "yarn eslint . --ext .js,.ts,.tsx",
+    "lint:libs": "yarn workspaces foreach -p --from '@lib/*' run lint",
+    "lint:web": "yarn workspace @package/web lint",
     "prettier": "yarn prettier --write .",
     "check": "yarn workspaces foreach -pti --from '@lib/*' run check",
     "check:watch": "yarn workspaces foreach -pti --from '@lib/*' run check:watch",
