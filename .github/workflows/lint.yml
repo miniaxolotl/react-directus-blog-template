@@ -5,14 +5,18 @@ on: [push, pull_request]
 jobs:
   run-eslint:
     name: Lint Entire Codebase
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [18.x]
     runs-on: ubuntu-latest
     steps:
       - name: Check Repository
-        uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: "16"
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-v1-${{ hashFiles('**/yarn.lock') }}
