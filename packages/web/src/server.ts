@@ -1,9 +1,18 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require("dotenv").config({
+  path: "../../.env",
+});
+
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+
 import compression from "compression";
 import express from "express";
 import { renderPage } from "vite-plugin-ssr/server";
 
 const isProduction = process.env.NODE_ENV === "production";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = `${__dirname}/..`;
 
 const startClient = async () => {
@@ -13,7 +22,8 @@ const startClient = async () => {
 
   if (isProduction) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const sirv = require("sirv");
+    // const sirv = require("sirv");
+    const sirv = (await import("sirv")).default;
     app.use(sirv(`${root}/dist/client`));
   } else {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
