@@ -1,0 +1,28 @@
+name: lint
+
+on: [push, pull_request]
+
+jobs:
+  run-eslint:
+    name: Lint Entire Codebase
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Repository
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - uses: actions/cache@v2
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-v1-${{ hashFiles('**/yarn.lock') }}
+      - name: Install Packages
+        run: yarn install --immutable
+      - name: Lint Root Directory
+        run: yarn lint
+      - name: Lint Libraries
+        run: yarn lint:libs
+      # - name: Lint API
+      #   run: yarn lint:api
+      # - name: Lint Web
+      #   run: yarn lint:web

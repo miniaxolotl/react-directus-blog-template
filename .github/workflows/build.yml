@@ -1,0 +1,39 @@
+name: build
+
+on:
+  push:
+    branches: [master, develop]
+  pull_request:
+    branches: [master, develop]
+
+jobs:
+  build:
+    name: Build Project
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [16.x]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v2
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-v1-${{ hashFiles('**/yarn.lock') }}
+      - name: Install Packages
+        run: yarn install --immutable
+
+      # lint
+      - name: Lint Root Directory
+        run: yarn lint
+      - name: Lint Libraries
+        run: yarn lint:libs
+
+      # build
+      - name: Build Libraries
+        run: yarn rollup
+      - name: Build web
+        run: yarn build:web
