@@ -17,6 +17,7 @@ export const StoreProvider: React.FC<StoreContextProviderProps> = ({
   children,
 }) => {
   const store = clientStore || baseRootStore(isServer);
+  if (!clientStore) clientStore = store;
   return <Context.Provider value={store}>{children}</Context.Provider>;
 };
 
