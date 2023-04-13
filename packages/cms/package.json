@@ -8,5 +8,39 @@
     "type": "git",
     "url": "git+https://github.com/celestialstag/react-directus-template.git",
     "directory": "packages/cms"
+  },
+  "dependencies": {
+    "@emotion/is-prop-valid": "~1.2.0",
+    "@emotion/react": "~11.10.5",
+    "@emotion/styled": "~11.10.5",
+    "@lib/config": "~0.0.1",
+    "@lib/stande": "~0.0.1",
+    "@lib/stores": "~0.0.1",
+    "@mantine/core": "~6.0.5",
+    "@mantine/hooks": "~6.0.5",
+    "@playwright/test": "~1.28.1",
+    "compression": "~1.7.4",
+    "date-fns": "^2.29.3",
+    "evergreen-ui": "~7.1.5",
+    "express": "~4.18.2",
+    "immer": "~9.0.21",
+    "react": "~18.2.0",
+    "react-dom": "~18.2.0",
+    "react-icons": "^4.8.0",
+    "sirv": "~2.0.2"
+  },
+  "devDependencies": {
+    "@emotion/babel-plugin": "~11.10.5",
+    "@types/compression": "^1.7.2",
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.11.9",
+    "@types/react": "~18.0.10",
+    "@types/react-dom": "~18.0.10",
+    "@vitejs/plugin-react": "~2.0.1",
+    "sass": "~1.56.2",
+    "ts-node": "~10.9.1",
+    "typescript": "~5.0.2",
+    "vite": "~4.2.1",
+    "vite-plugin-ssr": "^0.4.60"
   }
 }
