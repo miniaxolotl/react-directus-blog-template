@@ -1,23 +1,45 @@
 {
-  "extends": "@strapi/typescript-utils/tsconfigs/server",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "."
+    "baseUrl": ".",
+    /* lib options */
+    "target": "es2020",
+    "module": "es2020",
+    "moduleResolution": "node",
+
+    /* build options */
+    "jsx": "react",
+
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["vite/client", "react"],
+    "paths": {
+      "@assets": ["src/assets"],
+      "@assets/*": ["src/assets/*"],
+      "@components": ["src/components"],
+      "@components/*": ["src/components/*"],
+      "@hooks": ["src/hooks"],
+      "@hooks/*": ["src/hooks/*"],
+      "@pages": ["src/pages"],
+      "@pages/*": ["src/pages/*"],
+      "@renderer": ["src/renderer"],
+      "@renderer/*": ["src/renderer/*"],
+      "@stores": ["src/stores"],
+      "@stores/*": ["src/stores/*"]
+    }
+  },
+  "ts-node": {
+    "transpileOnly": true,
+    "esm": true,
+    "compilerOptions": {
+      "moduleResolution": "node16"
+    }
   },
   "include": [
-    "./",
-    "./**/*.ts",
-    "./**/*.js",
-    "src/**/*.json"
-  ],
-  "exclude": [
-    "node_modules/",
-    "build/",
-    "dist/",
-    ".cache/",
-    ".tmp/",
-    "src/admin/",
-    "**/*.test.*",
-    "src/plugins/**"
+    "./src/**/*",
+    "./typings/**/*.d.ts",
+    "../../typings/**/*.d.ts",
+    "vite-env.d.ts",
+    "vite.config.ts"
+    // "api/vite-env.d.ts"
   ]
 }
