@@ -1,9 +1,19 @@
 import React from "react";
 
 import { LayoutDefault } from "@components/layouts";
+import { Container, Text, Title } from "@mantine/core";
 
 export const Page = () => {
-  return <div>{/* <h1>{web_config.app_title}</h1> */}</div>;
+  return (
+    <>
+      <Container>
+        <Title color="brand-red">Contact Us</Title>
+      </Container>
+      <Container>
+        <Text dangerouslySetInnerHTML={{ __html: "body text" }} />
+      </Container>
+    </>
+  );
 };
 
 // export const onBeforeRender = async () => {};

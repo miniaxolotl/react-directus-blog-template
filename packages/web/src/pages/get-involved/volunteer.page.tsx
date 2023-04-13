@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Container, Text, Title } from "@mantine/core";
+import { Container, Text, Title } from "@mantine/core";
 
 import { web_config } from "@lib/config";
 import { Stande } from "@lib/stande";

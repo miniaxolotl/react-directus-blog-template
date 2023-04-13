@@ -1,20 +1,10 @@
 import React from "react";
 
-import {
-  Avatar,
-  Badge,
-  Box,
-  Button,
-  Card,
-  Group,
-  Image,
-  Mark,
-  Text,
-} from "@mantine/core";
+import { Avatar, Box, Button, Card, Image, Text } from "@mantine/core";
 
 import { web_config } from "@lib/config";
 import { Link } from "@components/core";
-import { getDay, format } from "date-fns";
+import { format } from "date-fns";
 
 export type ArticleCardProps = {
   id: string;
@@ -41,8 +31,6 @@ export type ArticleCardProps = {
 export const ArticleCard = ({
   id,
   cover,
-  cover_caption,
-  heading,
   preview,
   date_created,
   user_created,

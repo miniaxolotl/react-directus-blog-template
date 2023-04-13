@@ -1,7 +1,7 @@
 import React from "react";
 
 import { LayoutDefault } from "@components/layouts";
-import { Box, Container, Text, Title } from "@mantine/core";
+import { Container, Text, Title } from "@mantine/core";
 
 export const Page = () => {
   return (

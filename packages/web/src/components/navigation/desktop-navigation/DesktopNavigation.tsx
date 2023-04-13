@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Box, Container, Flex, Image, Title } from "@mantine/core";
+import { Box, Image, Title } from "@mantine/core";
 
 import { Link } from "@components/core";
 import { DesktopNavigationItem } from "./DesktopNavigationItem";
-import { web_config } from "@lib/config";
+
 const logo = "/assets/logo.svg";
 
 type DesktopNavigationProps = {

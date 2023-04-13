@@ -4,7 +4,7 @@ import { web_config } from "@lib/config";
 import { Stande } from "@lib/stande";
 
 import { LayoutDefault } from "@components/layouts";
-import { Box, Container, Pagination, SimpleGrid, Title } from "@mantine/core";
+import { Container, Pagination, SimpleGrid, Title } from "@mantine/core";
 import { ArticleCard } from "@components/display/article";
 
 type ArticleValues = {

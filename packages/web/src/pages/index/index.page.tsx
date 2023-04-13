@@ -3,15 +3,7 @@ import React from "react";
 import { LayoutDefault } from "@components/layouts";
 import { Stande } from "@lib/stande";
 import { web_config } from "@lib/config";
-import {
-  AspectRatio,
-  Box,
-  Button,
-  Container,
-  Image,
-  Overlay,
-  Title,
-} from "@mantine/core";
+import { Box, Container, Image, Title } from "@mantine/core";
 
 type MastheadValues = {
   cover: string;
