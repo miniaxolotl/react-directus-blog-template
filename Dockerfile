@@ -1,40 +1,29 @@
-# directive=RUN
-FROM alpine:3.17
-
 # configure image
-WORKDIR /app
+FROM node:lts-hydrogen as build
+WORKDIR /build
 COPY . .
 
-# initialize system packages
-RUN apk update && apk upgrade
-RUN apk add --no-cache bash python3 py3-pip 
-RUN apk add --no-cache build-base
-
-# initialize node packages
-RUN apk add --no-cache curl
-RUN apk add --no-cache nodejs
-RUN apk add --no-cache npm
-RUN npm install -g yarn
-# initialize web server packages
-# RUN apk add --no-cache nginx
-# RUN apk add --no-cache certbot
-
-# initialize git
-RUN apk add --no-cache git
-
 # initialize build tools
-RUN yarn install --frozen-lockfile
-RUN yarn rollup
-RUN yarn build:web
+RUN \
+	yarn install --frozen-lockfile \
+	&& yarn rollup \
+	&& yarn build:web
 
-# initialize nginx
-# RUN rm -rf /etc/nginx/conf.d/*
-# RUN rm -rf /etc/nginx/nginx.conf
-# COPY ./nginx.conf /etc/nginx/nginx.conf
-# COPY ./nginx /etc/nginx/conf.d
+# configure image
+FROM alpine:3.17
+WORKDIR /app
+COPY --from=build /build .
 
-# start directus
+RUN \
+	# initialize system packages
+	apk update && apk upgrade \
+	# configure node
+	&& apk add --no-cache nodejs npm \ 
+	&& npm install -g yarn
+	# && npm install -g yarn
 
+# finalize image
 EXPOSE 80 3020
-
-CMD ["yarn", "start:web"]
+# CMD ["yarn", "start:web"]
+CMD yarn build:web && yarn start:web
+LABEL org.opencontainers.image.source https://github.com/celestialstag/react-directus-template
