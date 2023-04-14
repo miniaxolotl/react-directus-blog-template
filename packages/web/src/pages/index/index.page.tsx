@@ -1,21 +1,20 @@
 import React from "react";
 
-import { LayoutDefault } from "@components/layouts";
-import { Stande } from "@lib/stande";
-import { web_config } from "@lib/config";
 import { Box, Container, Image, Title } from "@mantine/core";
 
-type MastheadValues = {
-  cover: string;
-  cover_caption: string;
-  heading: string;
-  preview: string;
-  body: string;
-};
+import { web_config } from "@lib/config";
+import { BasePage } from "@lib/shared";
 
-type PageProps = MastheadValues;
+import { LayoutDefault } from "@components/layouts";
 
-export const Page = ({ cover, cover_caption, heading, body }: PageProps) => {
+type PageProps = BasePage;
+
+export const Page = ({
+  cover_image,
+  cover_image_caption,
+  heading,
+  content,
+}: PageProps) => {
   return (
     <>
       <Container>
@@ -23,9 +22,9 @@ export const Page = ({ cover, cover_caption, heading, body }: PageProps) => {
       </Container>
       <Container>
         <Image
-          src={`https://${web_config.cms_host}/assets/${cover}?key=large-cover`}
-          alt={cover_caption}
-          caption={cover_caption}
+          src={`https://${web_config.cms_host}/assets/${cover_image}?key=large-cover`}
+          alt={cover_image_caption}
+          caption={cover_image_caption}
           style={{
             overflow: "hidden",
             borderRadius: 4,
@@ -34,12 +33,12 @@ export const Page = ({ cover, cover_caption, heading, body }: PageProps) => {
 
         <Box sx={{ display: "flex", gap: 16 }}>
           <Box
-            dangerouslySetInnerHTML={{ __html: body }}
+            dangerouslySetInnerHTML={{ __html: content }}
             sx={{ flexBasis: 12, flexGrow: 1 }}
           />
-          {/* TODO - last 3 articles (article list) */}
+          {/* TODO - last 3 blog posts (blog list) */}
           <Box sx={{ flexBasis: 240, flexGrow: 0 }}>
-            TODO: Put last 3 articles here
+            TODO: Put last 3 blog posts here
           </Box>
         </Box>
       </Container>
@@ -47,19 +46,8 @@ export const Page = ({ cover, cover_caption, heading, body }: PageProps) => {
   );
 };
 
-export const onBeforeRender = async () => {
-  const { get } = new Stande({
-    base_url: web_config.cms_host,
-    api_token: web_config.directus.public_api_token,
-    api_token_type: "Bearer",
-  });
-  const response = await get<{ data: MastheadValues }>("items/masthead", {
-    parameters: {},
-  });
-  if (!response.ok) return null;
-  return {
-    pageContext: { pageProps: { ...response.data.data } },
-  };
+export const query = {
+  model: "items/landing_page",
 };
 
 Page.getLayout = (page: React.ReactNode) => {

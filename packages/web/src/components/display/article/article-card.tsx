@@ -5,6 +5,7 @@ import { Avatar, Box, Button, Card, Image, Text } from "@mantine/core";
 import { web_config } from "@lib/config";
 import { Link } from "@components/core";
 import { format } from "date-fns";
+import { BaseBlogPost } from "@lib/shared";
 
 export type ArticleCardProps = {
   id: string;
@@ -30,11 +31,12 @@ export type ArticleCardProps = {
 
 export const ArticleCard = ({
   id,
-  cover,
-  preview,
+  cover_image,
+  cover_image_caption,
+  content_preview,
   date_created,
   user_created,
-}: ArticleCardProps) => {
+}: BaseBlogPost) => {
   const date = new Date(date_created);
   const date_string = format(date, "MMMM d, yyyy");
 
@@ -51,18 +53,18 @@ export const ArticleCard = ({
       }}
     >
       <Card.Section>
-        <Link href={`/articles/${id}`}>
+        <Link href={`/blog/${id}`}>
           <Image
-            src={`https://${web_config.cms_host}/assets/${cover}?key=small-cover`}
+            src={`https://${web_config.cms_host}/assets/${cover_image}?key=small-cover`}
             height={172}
-            alt="Norway"
+            alt={cover_image_caption}
           />
         </Link>
       </Card.Section>
 
       <Box mt={8} mb={4} sx={{ flexGrow: 1 }}>
         <Text size="sm" lineClamp={4}>
-          {preview}
+          {content_preview}
         </Text>
       </Box>
 
@@ -84,7 +86,7 @@ export const ArticleCard = ({
       </Box>
 
       <Card.Section>
-        <Link href={`/articles/${id}`}>
+        <Link href={`/blog/${id}`}>
           <Button variant="subtle" c="brand-red" fullWidth>
             Read now
           </Button>

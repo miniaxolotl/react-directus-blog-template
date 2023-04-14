@@ -1,6 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-require("dotenv").config({
+import dotenv from "dotenv";
+
+dotenv.config({
   path: "../../.env",
+});
+
+dotenv.config({
+  path: "../.env.local",
 });
 
 import { dirname } from "path";

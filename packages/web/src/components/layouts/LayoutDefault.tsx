@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { Box } from "@mantine/core";
 
-import { Stande } from "@lib/stande";
+// import { Stande } from "@lib/stande";
 import { web_config } from "@lib/config";
 
-import { usePageContext } from "@renderer/hooks";
+// import { usePageContext } from "@renderer/hooks";
 import {
   DesktopNavigation,
   DesktopNavigationDropdown,
   DesktopNavigationDropdownItem,
   DesktopNavigationItem,
 } from "@components/navigation/desktop-navigation";
-import { Box } from "@mantine/core";
 import { Link } from "@components/core";
 
 export type LayoutDefaultProps = {
@@ -40,7 +40,7 @@ export const Layout = ({
     <Box
       px={52}
       sx={{
-        display: "flex",
+        display: "flex !important",
         flexDirection: "column",
         gap: 16,
       }}
@@ -63,7 +63,7 @@ export const Layout = ({
           </DesktopNavigationDropdown>
 
           <DesktopNavigationItem>
-            <Link href="/articles">Articles</Link>
+            <Link href="/blog">Blog</Link>
           </DesktopNavigationItem>
 
           <DesktopNavigationDropdown title="About Us">
@@ -98,33 +98,6 @@ export const Content = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const LayoutDefault = (props: LayoutDefaultProps) => {
-  const { exports } = usePageContext();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const get_global_app_data = async () => {
-    const { get } = new Stande({
-      base_url: web_config.cms_host,
-    });
-
-    const res = await get<{ data: GlobalAppData }>("items/global", {
-      parameters: {},
-    });
-    if (res.ok) return res.data.data;
-    return null;
-  };
-
-  useEffect(() => {
-    const load_page_data = async () => {
-      const global_app_data = await get_global_app_data();
-      if (!global_app_data) return;
-      if (global_app_data?.title)
-        exports.documentProps.title = global_app_data.title;
-      if (global_app_data?.description)
-        exports.documentProps.description = global_app_data.description;
-    };
-
-    load_page_data();
-  }, []);
-
   return (
     <Layout>
       {/* TODO - ADD SEO Here */}
