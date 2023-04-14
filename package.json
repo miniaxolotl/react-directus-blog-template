@@ -55,11 +55,18 @@
     "preview:web": "yarn workspace @package/web preview",
     "start": "yarn workspaces foreach -pti --from '{@lib/*}' run start",
     "start:web": "yarn workspace @package/web start",
-    "script:migrate": "yarn workspace @script/migrate start"
+    "script:migrate": "yarn workspace @script/migrate start",
+    "web:build": "docker build -t celestialstag/react-directus-template:0.0.1 .",
+    "web:start": "yarn service:start web"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@mantine/core": "^6.0.7",
+    "@mantine/hooks": "^6.0.7",
+    "@mantine/ssr": "^6.0.7",
     "cross-env": "~7.0.3",
     "dotenv": "~16.0.3",
+    "dotenv-expand": "~10.0.0",
     "eslint-plugin-prettier": "~4.2.1",
     "nodemon": "~2.0.22"
   },
