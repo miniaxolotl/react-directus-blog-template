@@ -26,4 +26,7 @@ RUN \
 EXPOSE 80 3020
 # CMD ["yarn", "start:web"]
 CMD yarn build:web && yarn start:web
+
 LABEL org.opencontainers.image.source https://github.com/celestialstag/react-directus-template
+LABEL org.opencontainers.image.description="react-directus-template"
+LABEL org.opencontainers.image.licenses=GPL-3.0
