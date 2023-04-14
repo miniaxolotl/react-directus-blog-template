@@ -56,7 +56,7 @@
     "start": "yarn workspaces foreach -pti --from '{@lib/*}' run start",
     "start:web": "yarn workspace @package/web start",
     "script:migrate": "yarn workspace @script/migrate start",
-    "web:build": "docker build -t celestialstag/react-directus-template:0.0.1 .",
+    "web:build": "docker build -t ghcr.io/celestialstag/react-directus-template:0.0.1 .",
     "web:start": "yarn service:start web"
   },
   "dependencies": {
