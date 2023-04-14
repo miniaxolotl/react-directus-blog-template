@@ -7,7 +7,6 @@ COPY . .
 
 # initialize system packages
 RUN apk update && apk upgrade
-RUN apk add --no-cache docker docker-compose
 RUN apk add --no-cache bash python3 py3-pip 
 RUN apk add --no-cache build-base
 
@@ -17,15 +16,16 @@ RUN apk add --no-cache nodejs
 RUN apk add --no-cache npm
 RUN npm install -g yarn
 # initialize web server packages
-RUN apk add --no-cache nginx
-RUN apk add --no-cache certbot
+# RUN apk add --no-cache nginx
+# RUN apk add --no-cache certbot
 
 # initialize git
 RUN apk add --no-cache git
 
 # initialize build tools
 RUN yarn install --frozen-lockfile
-RUN yarn build
+RUN yarn rollup
+RUN yarn build:web
 
 # initialize nginx
 # RUN rm -rf /etc/nginx/conf.d/*
@@ -35,6 +35,6 @@ RUN yarn build
 
 # start directus
 
-EXPOSE 3020
+EXPOSE 80 3020
 
 CMD ["yarn", "start:web"]

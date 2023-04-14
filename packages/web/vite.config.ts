@@ -1,3 +1,15 @@
+import dotenv from "dotenv";
+import dotenvExpand from "dotenv-expand";
+
+dotenv.config({
+  path: "../../.env",
+});
+const envConfig = dotenv.config({
+  path: ".env.local",
+});
+
+dotenvExpand.expand(envConfig);
+
 import { UserConfig } from "vite";
 import path from "path";
 import react from "@vitejs/plugin-react";
