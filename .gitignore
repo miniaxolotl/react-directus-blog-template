@@ -1,5 +1,3 @@
-/.vscode/
-
 .DS_Store
 .env*
 !.env.local
@@ -17,7 +15,8 @@ coverage/
 !/.yarn/releases
 !/.yarn/sdks
 
-/**/rollup.*.cjs
+# /**/rollup.*.cjs
+/.vscode/
 
 # Swap the comments on the following lines if you don't wish to use zero-installs
 # Documentation here: https://yarnpkg.com/features/zero-installs

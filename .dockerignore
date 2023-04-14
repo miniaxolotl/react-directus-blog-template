@@ -1,12 +1,7 @@
-/.vscode/
-/.github/
-
 .DS_Store
-.env*
-!.env.local
-!.env*.example
-
-node_modules/
+# .env*
+# !.env.local
+# !.env*.example
 
 node_modules/
 coverage/
@@ -21,3 +16,5 @@ coverage/
 !/.yarn/sdks
 
 # /**/rollup.*.cjs
+/.vscode/
+/.github/
