@@ -93,3 +93,12 @@ services:
 
       - ADMIN_EMAIL=${DIRECTUS_ADMIN_EMAIL}
       - ADMIN_PASSWORD=${DIRECTUS_ADMIN_PASSWORD}
+  web:
+    image: ghcr.io/celestialstag/react-directus-template
+    restart: always
+    ports:
+      - "${WEB_PORT:-3020}:${WEB_PORT:-3020}"
+    environment:
+      - "HOST=${HOST}"
+      - "API_HOST=${API_HOST}"
+      - "CMS_HOST=${CMS_HOST}"
