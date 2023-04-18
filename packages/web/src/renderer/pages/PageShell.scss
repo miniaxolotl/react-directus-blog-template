@@ -3,18 +3,12 @@
 // font-family: 'Secular One', sans-serif;
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;400&family=Open+Sans:wght@300;400&family=Secular+One&display=swap");
 
-// body {
-//   color: #5d784b;
-// }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Secular One", sans-serif;
-  font-weight: 400;
+@for $index from 1 through 6 {
+  h#{$index} {
+    margin: 16px 0px;
+    font-family: "Secular One", sans-serif;
+    font-weight: 400;
+  }
 }
 
 .is-active {
