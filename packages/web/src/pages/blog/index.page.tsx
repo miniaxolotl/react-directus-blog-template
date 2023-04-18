@@ -38,6 +38,9 @@ export const query = {
   model: "items/blog_post",
   method: "search",
   select: ["*", "user_created.*"],
+  parameters: {
+    sort: "date_created",
+  },
   filter: {
     status: {
       _eq: "published",
