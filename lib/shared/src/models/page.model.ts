@@ -15,6 +15,7 @@ export type BasePage = BaseCoverImage & {
   heading: string;
   subheading?: string;
   content: string;
+  content_preview?: string;
   date_created?: string;
   date_updated?: string;
 };
