@@ -1468,6 +1468,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mantine/form@npm:~6.0.8":
+  version: 6.0.8
+  resolution: "@mantine/form@npm:6.0.8"
+  dependencies:
+    fast-deep-equal: ^3.1.3
+    klona: ^2.0.5
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: aa724639a89c89f0a9ccfaca9c326811869e559238158beecf4e19b63080fffa3c00f62fbd19befcdae949b1eb4b12ef736e342f88976f5ba7d07109b5906d57
+  languageName: node
+  linkType: hard
+
 "@mantine/hooks@npm:^6.0.7":
   version: 6.0.7
   resolution: "@mantine/hooks@npm:6.0.7"
@@ -1660,6 +1672,7 @@ __metadata:
     "@lib/stande": ~0.0.1
     "@lib/stores": ~0.0.1
     "@mantine/core": ~6.0.5
+    "@mantine/form": ~6.0.8
     "@mantine/hooks": ~6.0.5
     "@playwright/test": ~1.28.1
     "@types/compression": ^1.7.2
@@ -5349,6 +5362,13 @@ __metadata:
   version: 3.0.3
   resolution: "kleur@npm:3.0.3"
   checksum: df82cd1e172f957bae9c536286265a5cdbd5eeca487cb0a3b2a7b41ef959fc61f8e7c0e9aeea9c114ccf2c166b6a8dd45a46fd619c1c569d210ecd2765ad5169
+  languageName: node
+  linkType: hard
+
+"klona@npm:^2.0.5":
+  version: 2.0.6
+  resolution: "klona@npm:2.0.6"
+  checksum: ac9ee3732e42b96feb67faae4d27cf49494e8a3bf3fa7115ce242fe04786788e0aff4741a07a45a2462e2079aa983d73d38519c85d65b70ef11447bbc3c58ce7
   languageName: node
   linkType: hard
 

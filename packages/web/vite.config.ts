@@ -43,6 +43,10 @@ export const config: UserConfig = {
         find: "@stores",
         replacement: path.resolve(__dirname, "src/stores"),
       },
+      {
+        find: "@data",
+        replacement: path.resolve(__dirname, "src/data"),
+      },
     ],
   },
 };
