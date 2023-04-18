@@ -18,7 +18,14 @@ export const DesktopNavigationDropdown = ({
       <Menu.Target>
         <DesktopNavigationItem>{title}</DesktopNavigationItem>
       </Menu.Target>
-      <Menu.Dropdown p={0} miw={144} sx={{ borderRadius: 2 }}>
+      <Menu.Dropdown
+        p={0}
+        miw={144}
+        sx={{
+          borderRadius: 4,
+          boxShadow: "1.2px 1.2px 2px 0.8px #595959",
+        }}
+      >
         <Flex direction="column">{children}</Flex>
       </Menu.Dropdown>
     </Menu>
