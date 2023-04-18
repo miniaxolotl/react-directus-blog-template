@@ -7,36 +7,16 @@ import { Link } from "@components/core";
 import { format } from "date-fns";
 import { BaseBlogPost } from "@lib/shared";
 
-export type ArticleCardProps = {
-  id: string;
-  cover: string;
-  cover_caption: string;
-  heading: string;
-  preview: string;
-  body: string;
-  date_created: string;
-  user_created: {
-    avatar: string;
-    first_name: string;
-    last_name: string;
-    title: string;
-  };
-  user_updated: {
-    avatar: string;
-    first_name: string;
-    last_name: string;
-    title: string;
-  };
-};
+export type ArticleCardProps = BaseBlogPost;
 
 export const ArticleCard = ({
   id,
   cover_image,
-  cover_image_caption,
+  heading,
   content_preview,
   date_created,
   user_created,
-}: BaseBlogPost) => {
+}: ArticleCardProps) => {
   const date = new Date(date_created);
   const date_string = format(date, "MMMM d, yyyy");
 
@@ -50,6 +30,7 @@ export const ArticleCard = ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "stretch",
+        height: "100%",
       }}
     >
       <Card.Section>
@@ -66,7 +47,7 @@ export const ArticleCard = ({
             src={`https://${web_config.cms_host}/assets/${cover_image}?key=small-cover`}
             height={172}
             // radius={4}
-            alt={cover_image_caption}
+            alt={`${heading} - Blog cover image`}
           />
         </Link>
       </Card.Section>

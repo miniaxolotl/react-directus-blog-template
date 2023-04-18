@@ -22,7 +22,16 @@ export const FooterDefault = ({ children }: { children?: React.ReactNode }) => {
         gap: 16,
       }}
     >
-      <Box my={24}>
+      <Box
+        my={24}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          "@media (max-width: 920px)": {
+            flexDirection: "column-reverse",
+          },
+        }}
+      >
         <Box
           sx={{
             display: "flex",
@@ -30,6 +39,10 @@ export const FooterDefault = ({ children }: { children?: React.ReactNode }) => {
             justifyContent: "center",
             alignItems: "center",
             gap: 8,
+            "@media (max-width: 920px)": {
+              flexDirection: "column-reverse",
+              gap: 0,
+            },
           }}
         >
           <Box
@@ -54,8 +67,8 @@ export const FooterDefault = ({ children }: { children?: React.ReactNode }) => {
             aria-label="email link"
           >
             <FiMail />
-            <Link href="email:ssyouthofcanada@gmail.com">
-              ssyouthofcanada@gmail.com
+            <Link href={`mailto:${web_config.app_email}`}>
+              {web_config.app_email}
             </Link>
           </Box>
         </Box>

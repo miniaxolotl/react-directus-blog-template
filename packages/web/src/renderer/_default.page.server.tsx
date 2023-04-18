@@ -50,6 +50,7 @@ export const render = async (pageContext: PageContextServer) => {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="${description}" />
+				<link rel="manifest" href="/manifest.json">
         <title>${title}</title>
         <link rel="icon" href="${logo}" />
 				<style>.hideUnstyled { display: none }</style>

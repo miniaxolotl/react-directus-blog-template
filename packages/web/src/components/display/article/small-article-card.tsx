@@ -6,35 +6,14 @@ import { web_config } from "@lib/config";
 import { Link } from "@components/core";
 import { BaseBlogPost } from "@lib/shared";
 
-export type SmallArticleCardProps = {
-  id: string;
-  cover: string;
-  cover_caption: string;
-  heading: string;
-  preview: string;
-  body: string;
-  date_created: string;
-  user_created: {
-    avatar: string;
-    first_name: string;
-    last_name: string;
-    title: string;
-  };
-  user_updated: {
-    avatar: string;
-    first_name: string;
-    last_name: string;
-    title: string;
-  };
-};
+export type SmallArticleCardProps = BaseBlogPost;
 
 export const SmallArticleCard = ({
   id,
   cover_image,
-  cover_image_caption,
   heading,
   content_preview,
-}: BaseBlogPost) => {
+}: SmallArticleCardProps) => {
   return (
     <Box>
       <Box sx={{ display: "flex", flexDirection: "row", gap: 4 }}>
@@ -49,7 +28,7 @@ export const SmallArticleCard = ({
         >
           <Image
             src={`https://${web_config.cms_host}/assets/${cover_image}?key=small-avatar`}
-            alt={cover_image_caption}
+            alt={`${heading} - Blog cover image`}
             height={72}
             width={72}
             radius={4}
