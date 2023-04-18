@@ -24,7 +24,9 @@
       "@renderer": ["src/renderer"],
       "@renderer/*": ["src/renderer/*"],
       "@stores": ["src/stores"],
-      "@stores/*": ["src/stores/*"]
+      "@stores/*": ["src/stores/*"],
+      "@data": ["src/data"],
+      "@data/*": ["src/data/*"]
     }
   },
   "ts-node": {
