@@ -15,13 +15,12 @@ export const DesktopNavigationItem = forwardRef<
       {...props}
       ref={ref}
       align="center"
-      // px={8}
       py={0}
-      // mx={4}
       sx={{
         ":hover": {
           backgroundColor: "titleBar.hoverBackground",
           color: "titleBar.hoverForeground",
+          cursor: "pointer",
         },
         a: { ":hover": { textDecoration: "none" } },
         ":first-of-type": { marginLeft: 0 },

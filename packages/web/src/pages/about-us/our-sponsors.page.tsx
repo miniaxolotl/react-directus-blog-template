@@ -1,22 +1,28 @@
 import React from "react";
 
-import { LayoutDefault } from "@components/layouts";
 import { Container, Text, Title } from "@mantine/core";
 
-export const Page = () => {
+import { LayoutDefault } from "@components/layouts";
+import { BasePage } from "@lib/shared";
+
+type PageProps = BasePage;
+
+export const Page = ({ heading, content }: PageProps) => {
   return (
     <>
       <Container>
-        <Title color="brand-red">Our Sponsors</Title>
+        <Title color="brand-red">{heading}</Title>
       </Container>
       <Container>
-        <Text dangerouslySetInnerHTML={{ __html: "body text" }} />
+        <Text dangerouslySetInnerHTML={{ __html: content }} />
       </Container>
     </>
   );
 };
 
-// export const onBeforeRender = async () => {};
+export const query = {
+  model: "items/our_sponsors",
+};
 
 Page.getLayout = (page: React.ReactNode) => {
   return <LayoutDefault>{page}</LayoutDefault>;

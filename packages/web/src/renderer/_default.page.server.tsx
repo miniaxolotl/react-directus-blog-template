@@ -76,11 +76,11 @@ export const onBeforeRender = async (pageContext: PageContextServer) => {
 
   const { fetch } = new Stande({
     base_url: web_config.cms_host,
-    api_token_type: "Bearer",
   });
 
   const response = await fetch(query.model, {
     method: query.method || "get",
+    parameters: query.parameters,
     ...(!query.method || query.method === "get"
       ? {}
       : {
@@ -88,6 +88,7 @@ export const onBeforeRender = async (pageContext: PageContextServer) => {
             query: {
               fields: query.select?.join(","),
               filter: query.filter,
+              sort: query.sort,
             },
           },
         }),

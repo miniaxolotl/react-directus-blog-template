@@ -21,6 +21,7 @@ export const DesktopNavigation = ({
       sx={{
         display: "flex",
         justifyContent: "space-between",
+        gap: 16,
         "@media (max-width: 920px)": {
           alignItems: "center",
           flexDirection: "column",
@@ -28,21 +29,21 @@ export const DesktopNavigation = ({
         "@media (max-width: 680px)": {
           fontSize: 14,
         },
-        gap: 16,
       }}
     >
       <DesktopNavigationItem>
-        <Title order={4} color="brand-red">
+        <Title size="h4" order={1} color="brand-red">
           <Link
             href="/"
             weight={600}
             color="brand-red"
             sx={{
-              flexDirection: "row",
               display: "flex",
+              flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",
               gap: 8,
+              textShadow: "1.2px 1.2px 2px 0.8px #595959",
               "@media (max-width: 980px)": {
                 alignItems: "center",
               },
@@ -51,7 +52,17 @@ export const DesktopNavigation = ({
               },
             }}
           >
-            <Image src={logo} maw={36} mx="auto" alt="Organization logo" />
+            <Image
+              src={logo}
+              maw={36}
+              mx="auto"
+              alt="Organization logo"
+              sx={
+                {
+                  // boxShadow: "1.2px 1.2px 2px 0.8px #595959",
+                }
+              }
+            />
             {title}
           </Link>
         </Title>

@@ -53,10 +53,19 @@ export const ArticleCard = ({
       }}
     >
       <Card.Section>
-        <Link href={`/blog/${id}`}>
+        <Link
+          href={`/blog/${id}`}
+          sx={{
+            ":hover": {
+              "animation-duration": "0.5s",
+              opacity: 0.8,
+            },
+          }}
+        >
           <Image
             src={`https://${web_config.cms_host}/assets/${cover_image}?key=small-cover`}
             height={172}
+            // radius={4}
             alt={cover_image_caption}
           />
         </Link>
@@ -71,7 +80,7 @@ export const ArticleCard = ({
       <Box mt={4} mb={8}>
         <Box sx={{ display: "flex", flexDirection: "row", gap: 4 }}>
           <Avatar
-            src={`https://${web_config.cms_host}/assets/${user_created.avatar}?key=avatar`}
+            src={`https://${web_config.cms_host}/assets/${user_created.avatar}?key=small-avatar`}
             alt={`${user_created.first_name} ${user_created.last_name}`}
           />
           <Box>

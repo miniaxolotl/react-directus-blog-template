@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Box, Container, Image, Title } from "@mantine/core";
 
 import { web_config } from "@lib/config";
-import { BasePage } from "@lib/shared";
+import { BaseBlogPost, BasePage } from "@lib/shared";
+import { Stande } from "@lib/stande";
 
 import { LayoutDefault } from "@components/layouts";
+import { SmallArticleCard } from "@components/display/article";
 
 type PageProps = BasePage;
 
@@ -15,11 +17,40 @@ export const Page = ({
   heading,
   content,
 }: PageProps) => {
+  const [blogPosts, setBlogPosts] = useState<BaseBlogPost[]>([]);
+
+  const { search } = new Stande({
+    base_url: web_config.cms_host,
+  });
+
+  useEffect(() => {
+    const getBlogPosts = async () => {
+      const response = await search<{ data: BaseBlogPost[] }>(
+        "items/blog_post",
+        {
+          parameters: {
+            sort: "date_created",
+          },
+          body: {
+            query: {
+              fields: "*,user_created.*",
+              filter: {
+                status: {
+                  _eq: "published",
+                },
+              },
+            },
+          },
+        }
+      );
+      if (response.ok) setBlogPosts(response.data.data);
+    };
+
+    getBlogPosts();
+  }, []);
+
   return (
     <>
-      <Container>
-        <Title color="brand-red">{heading}</Title>
-      </Container>
       <Container>
         <Image
           src={`https://${web_config.cms_host}/assets/${cover_image}?key=large-cover`}
@@ -31,14 +62,36 @@ export const Page = ({
           }}
         />
 
-        <Box sx={{ display: "flex", gap: 16 }}>
-          <Box
-            dangerouslySetInnerHTML={{ __html: content }}
-            sx={{ flexBasis: 12, flexGrow: 1 }}
-          />
-          {/* TODO - last 3 blog posts (blog list) */}
-          <Box sx={{ flexBasis: 240, flexGrow: 0 }}>
-            TODO: Put last 3 blog posts here
+        <Box
+          sx={{
+            display: "flex",
+            gap: 16,
+            "@media (max-width: 920px)": {
+              alignItems: "center",
+              flexDirection: "column",
+            },
+            "@media (max-width: 680px)": {
+              fontSize: 14,
+            },
+          }}
+        >
+          <Box sx={{ flexBasis: 12, flexGrow: 1 }}>
+            {heading && (
+              <Title size="h2" order={2} color="brand-red">
+                {heading}
+              </Title>
+            )}
+            <Box dangerouslySetInnerHTML={{ __html: content }} />
+          </Box>
+          <Box sx={{ flexBasis: 320, flexGrow: 0 }}>
+            <Title size="h2" order={2} color="brand-red" mb={16}>
+              Recent Blog Posts
+            </Title>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {blogPosts?.map((x) => (
+                <SmallArticleCard key={x.id} {...x} />
+              ))}
+            </Box>
           </Box>
         </Box>
       </Container>

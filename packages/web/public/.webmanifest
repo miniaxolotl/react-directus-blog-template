@@ -1,0 +1,54 @@
+{
+  "short_name": "react-directus-template",
+  "name": "react-directus-template",
+  "description": "Simple blog web application",
+  "icons": [
+    {
+      "src": "/assets/application-512x512.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/assets/application-192x192.svg",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/assets/favicon-32x32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/assets/favicon-16x16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "/assets/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ],
+  "id": "/?source=pwa",
+  "start_url": "/?source=pwa",
+  "theme_color": "#f2f2f2",
+  "background_color": "#f2f2f2",
+  "display": "standalone",
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "Blog Posts",
+      "short_name": "Blog",
+      "description": "View weather information for today",
+      "url": "/blog?source=pwa",
+      "icons": [{ "src": "/assets/favicon-32x32.png", "sizes": "32x32" }]
+    },
+    {
+      "name": "Conference Overview",
+      "short_name": "Conference",
+      "description": "View weather information for today",
+      "url": "/conference/overview?source=pwa",
+      "icons": [{ "src": "/assets/favicon-32x32.png", "sizes": "32x32" }]
+    }
+  ]
+}
