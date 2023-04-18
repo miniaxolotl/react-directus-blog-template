@@ -42,7 +42,7 @@
     "immer": "~9.0.21",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
-    "react-icons": "^4.8.0",
+    "react-icons": "~4.8.0",
     "sirv": "~2.0.2"
   },
   "devDependencies": {

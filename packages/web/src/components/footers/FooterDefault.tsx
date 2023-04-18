@@ -1,14 +1,13 @@
 import React from "react";
 import { Box } from "@mantine/core";
-import { MdCopyright } from "react-icons/md";
-import { FiFacebook, FiInstagram, FiMail } from "react-icons/fi";
 
-import { social_links } from "@data";
+import { MdCopyright } from "react-icons/md/index.js";
+import { FiFacebook, FiInstagram, FiMail } from "react-icons/fi/index.js";
 
-// import { Stande } from "@lib/stande";
 import { web_config } from "@lib/config";
 
 import { Link } from "@components/core";
+import { social_links } from "@data";
 
 export type FooterDefaultProps = {
   children?: React.ReactNode;
@@ -48,9 +47,7 @@ export const FooterDefault = ({ children }: { children?: React.ReactNode }) => {
             aria-label="facebook link"
           >
             <FiFacebook />
-            <Link href="https://www.facebook.com/SouthSudaneseYouthOfCanada">
-              facebook
-            </Link>
+            <Link href={social_links.facebook.link}>facebook</Link>
           </Box>
           <Box
             sx={{ display: "flex", alignItems: "center", gap: 2 }}
