@@ -30,10 +30,40 @@ export const ArticleAuthorCard = ({
         sx={{ textShadow: "1.2px 1.2px 2px 0.8px #595959" }}
       />
       <Box>
-        <Title
-          size="h3"
-          order={2}
-        >{`${first_name} ${last_name} | ${title}`}</Title>
+        <Title size="h3" order={2} sx={{ display: "flex", gap: 4 }}>
+          <Box>{`${first_name} ${last_name}`}</Box>
+          <Box
+            sx={{
+              display: "box",
+              visibility: "visible",
+              "@media (max-width: 920px)": {
+                display: "none",
+                visibility: "hidden",
+              },
+            }}
+          >{`|`}</Box>
+          <Box
+            sx={{
+              display: "box",
+              visibility: "visible",
+              "@media (max-width: 920px)": {
+                display: "none",
+                visibility: "hidden",
+              },
+            }}
+          >{`${title}`}</Box>
+        </Title>
+        <Text
+          sx={{
+            fontWeight: "bold",
+            "@media (min-width: 920px)": {
+              display: "none",
+              visibility: "hidden",
+            },
+          }}
+        >
+          {title}
+        </Text>
         <Link href={`mailto:${email}`}>{email}</Link>
         <Text>{description}</Text>
       </Box>
