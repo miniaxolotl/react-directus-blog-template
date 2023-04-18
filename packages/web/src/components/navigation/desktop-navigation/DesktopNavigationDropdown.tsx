@@ -23,7 +23,7 @@ export const DesktopNavigationDropdown = ({
         miw={144}
         sx={{
           borderRadius: 4,
-          boxShadow: "1.2px 1.2px 2px 0.8px #595959",
+          boxShadow: "2px 2px 4px 1px #595959",
         }}
       >
         <Flex direction="column">{children}</Flex>
