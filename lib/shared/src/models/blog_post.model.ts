@@ -6,7 +6,7 @@ import { BaseCoverImage, BaseUser } from ".";
 
 export type BaseBlogPost = BaseCoverImage & {
   id: string;
-  title: string;
+  heading: string;
   content: string;
   content_preview: string;
   user_created: BaseUser;
