@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { LayoutDefault } from "@components/layouts";
-import { Container, Pagination, SimpleGrid, Title } from "@mantine/core";
+import { Box, Container, Pagination, Title } from "@mantine/core";
 import { ArticleCard } from "@components/display/article";
 import { BaseBlogPost } from "@lib/shared";
 
@@ -21,13 +21,36 @@ export const Page = ({ data: posts }: PageProps) => {
           flexDirection: "column",
           alignItems: "center",
           gap: 16,
+          "@media (max-width: 980px)": {
+            "grid-template-columns": `repeat(3, 1fr)`,
+            alignItems: "center",
+          },
         }}
       >
-        <SimpleGrid cols={3}>
-          {posts?.map((x) => (
-            <ArticleCard key={x.id} {...x} />
-          ))}
-        </SimpleGrid>
+        <Box
+          sx={{
+            display: "grid",
+            "grid-template-columns": `repeat(3, 1fr)`,
+            columnGap: 8,
+            rowGap: 12,
+            "@media (max-width: 980px)": {
+              "grid-template-columns": `repeat(2, 1fr)`,
+            },
+            "@media (max-width: 720px)": {
+              "grid-template-columns": `repeat(1, 1fr)`,
+            },
+          }}
+        >
+          {posts
+            ?.sort(
+              (a, b) =>
+                new Date(b.date_created).getTime() -
+                new Date(a.date_created).getTime()
+            )
+            .map((x) => (
+              <ArticleCard key={x.id} {...x} />
+            ))}
+        </Box>
         <Pagination value={activePage} onChange={setPage} total={1} disabled />
       </Container>
     </>

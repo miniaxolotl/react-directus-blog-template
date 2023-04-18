@@ -88,9 +88,15 @@ export const Page = ({
               Recent Blog Posts
             </Title>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {blogPosts?.map((x) => (
-                <SmallArticleCard key={x.id} {...x} />
-              ))}
+              {blogPosts
+                ?.sort(
+                  (a, b) =>
+                    new Date(b.date_created).getTime() -
+                    new Date(a.date_created).getTime()
+                )
+                .map((x) => (
+                  <SmallArticleCard key={x.id} {...x} />
+                ))}
             </Box>
           </Box>
         </Box>
