@@ -12,6 +12,7 @@ import {
   DesktopNavigationItem,
 } from "@components/navigation/desktop-navigation";
 import { Link } from "@components/core";
+import { FooterDefault } from "@components/footers";
 
 export type LayoutDefaultProps = {
   children?: React.ReactNode;
@@ -89,6 +90,7 @@ export const Layout = ({
         </DesktopNavigation>
       </Box>
       <Box py={24}>{children}</Box>
+      <FooterDefault />
     </Box>
   );
 };
