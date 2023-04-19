@@ -14,6 +14,7 @@ export type IBaseConfig = {
   appname: string;
   app_title: string;
   app_email: string;
+  app_description: string;
   host: string;
   /** api config */
   api_port: number;
@@ -44,6 +45,7 @@ export const base_config: IBaseConfig = {
   appname: env.APPNAME ?? "react-directus-template",
   app_title: env.APP_TITLE ?? "react-directus-template",
   app_email: env.APP_EMAIL ?? "admin@example.com",
+  app_description: env.APP_DESCRIPTION ?? "react-directus-template",
   host: env.HOST ?? "localhost",
   /** api config */
   api_port: parseInt(env.API_PORT ?? "3000"),
