@@ -19,13 +19,12 @@ import { Stande } from "@lib/stande";
 import { LayoutDefault } from "@components/layouts";
 import { SmallArticleCard } from "@components/display/article";
 
-type PageProps = BasePage;
+type PageProps = {
+  page_data: BasePage;
+};
 
 export const Page = ({
-  cover_image,
-  cover_image_caption,
-  heading,
-  content,
+  page_data: { cover_image, cover_image_caption, heading, content },
 }: PageProps) => {
   const [blogPosts, setBlogPosts] = useState<BaseBlogPost[]>([]);
   const [formSuccess, setFormSuccess] = useState<boolean | null>(null);
@@ -188,7 +187,7 @@ export const Page = ({
 };
 
 export const query = {
-  model: "items/landing_page",
+  page_data: { model: "items/landing_page" },
 };
 
 Page.getLayout = (page: React.ReactNode) => {

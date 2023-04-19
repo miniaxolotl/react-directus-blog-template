@@ -1,19 +1,28 @@
 import React from "react";
 
-import { Container, Text, Title } from "@mantine/core";
+import { Container, Image, Text, Title } from "@mantine/core";
 
 import { LayoutDefault } from "@components/layouts";
 import { BasePage } from "@lib/shared";
+import { web_config } from "@lib/config";
 
-type PageProps = BasePage;
+type PageProps = {
+  page_data: BasePage;
+};
 
-export const Page = ({ heading, content }: PageProps) => {
+export const Page = ({
+  page_data: { cover_image, heading, content },
+}: PageProps) => {
   return (
     <>
       <Container>
         <Title color="brand-red">{heading}</Title>
       </Container>
       <Container>
+        <Image
+          src={`https://${web_config.cms_host}/assets/${cover_image}?key=large-cover`}
+          radius={4}
+        />
         <Text dangerouslySetInnerHTML={{ __html: content }} />
       </Container>
     </>
@@ -21,7 +30,7 @@ export const Page = ({ heading, content }: PageProps) => {
 };
 
 export const query = {
-  model: "items/our_story",
+  page_data: { model: "items/our_story" },
 };
 
 Page.getLayout = (page: React.ReactNode) => {
