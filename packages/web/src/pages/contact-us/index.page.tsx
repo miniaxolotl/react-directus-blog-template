@@ -6,7 +6,6 @@ import {
   Button,
   Container,
   Divider,
-  Input,
   Text,
   TextInput,
   Textarea,
@@ -19,7 +18,6 @@ import {
   MdAlternateEmail,
   MdEmail,
   MdError,
-  MdMessage,
   MdPerson,
 } from "react-icons/md/index.js";
 import { Stande } from "@lib/stande";
