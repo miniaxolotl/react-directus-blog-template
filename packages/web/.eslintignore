@@ -23,5 +23,4 @@ coverage/
 # !/.yarn/cache
 /.pnp.*
 
-/**/.eslintrc*
 yarn.lock
