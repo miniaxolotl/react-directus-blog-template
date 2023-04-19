@@ -15,6 +15,7 @@ export const web_config: IWebConfig = {
   appname: env.VITE_APPNAME ?? base_config.appname,
   app_title: env.VITE_APP_TITLE ?? base_config.app_title,
   app_email: env.VITE_APP_EMAIL ?? base_config.app_email,
+  app_description: env.VITE_APP_DESCRIPTION ?? base_config.app_description,
   host: env.VITE_HOST ?? base_config.host,
   /** api config */
   api_port: parseInt(env.VITE_API_PORT ?? `${base_config.api_port}`),
