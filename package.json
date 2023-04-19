@@ -27,7 +27,7 @@
     "scripts/*"
   ],
   "scripts": {
-    "lint": "yarn eslint . --ext .js,.ts,.tsx",
+    "lint": "echo 'linting @package/*' && yarn eslint . --ext .js,.ts,.tsx",
     "lint:libs": "yarn workspaces foreach -p --from '@lib/*' run lint",
     "lint:web": "yarn workspace @package/web lint",
     "prettier": "yarn prettier --write .",
