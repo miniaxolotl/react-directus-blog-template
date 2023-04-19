@@ -10,10 +10,12 @@ import { web_config } from "@lib/config";
 import { LayoutDefault } from "@components/layouts";
 import { ArticleAuthorCard } from "@components/display/article";
 
-type PageProps = { data?: BaseBlogPost };
+type PageProps = {
+  page_data: BaseBlogPost;
+};
 
-export const Page = ({ data: post_data }: PageProps) => {
-  const date = new Date(post_data?.date_created || "");
+export const Page = ({ page_data: post_data }: PageProps) => {
+  const date = new Date(post_data.date_created);
   const date_string = format(date, "MMMM d, yyyy");
 
   return (
@@ -21,26 +23,27 @@ export const Page = ({ data: post_data }: PageProps) => {
       <Container size="md">
         <Title color="brand-red">{post_data?.heading}</Title>
       </Container>
-      <Container
-        size="md"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          gap: 16,
-        }}
-      >
-        <Image
-          src={`https://${web_config.cms_host}/assets/${post_data?.cover_image}?key=large-cover`}
-          // height={240}
-          radius={4}
-          alt={post_data?.cover_image_caption}
-        />
-        <Box dangerouslySetInnerHTML={{ __html: post_data?.content || "" }} />
-        <Box>
-          <Text color="dimmed">Published {date_string}</Text>
+      <Container>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: 16,
+          }}
+        >
+          <Image
+            src={`https://${web_config.cms_host}/assets/${post_data?.cover_image}?key=large-cover`}
+            // height={240}
+            radius={4}
+            alt={post_data?.cover_image_caption}
+          />
+          <Box dangerouslySetInnerHTML={{ __html: post_data?.content || "" }} />
+          <Box>
+            <Text color="dimmed">Published {date_string}</Text>
+          </Box>
+          {post_data && <ArticleAuthorCard {...post_data?.user_created} />}
         </Box>
-        {post_data && <ArticleAuthorCard {...post_data?.user_created} />}
       </Container>
     </>
   );
@@ -65,7 +68,7 @@ export const onBeforeRender = async (props: PageContextServer) => {
 
   return {
     pageContext: {
-      pageProps: { data: response.data.data },
+      pageProps: { page_data: response.data.data },
     },
   };
 };

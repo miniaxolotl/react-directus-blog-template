@@ -5,9 +5,11 @@ import { Container, Text, Title } from "@mantine/core";
 import { LayoutDefault } from "@components/layouts";
 import { BasePage } from "@lib/shared";
 
-type PageProps = BasePage;
+type PageProps = {
+  page_data: BasePage;
+};
 
-export const Page = ({ heading, content }: PageProps) => {
+export const Page = ({ page_data: { heading, content } }: PageProps) => {
   return (
     <>
       <Container>
@@ -21,7 +23,7 @@ export const Page = ({ heading, content }: PageProps) => {
 };
 
 export const query = {
-  model: "items/conference_itinerary",
+  page_data: { model: "items/conference_itinerary" },
 };
 
 Page.getLayout = (page: React.ReactNode) => {

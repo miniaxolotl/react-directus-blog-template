@@ -1,27 +1,35 @@
 import React from "react";
 
-import { Container, Text, Title } from "@mantine/core";
+import { Container, Divider, Text, Title } from "@mantine/core";
 
-import { LayoutDefault } from "@components/layouts";
 import { BasePage } from "@lib/shared";
 
-type PageProps = BasePage;
+import { LayoutDefault } from "@components/layouts";
+import { FeatureItem, FeatureList } from "@components/display/list";
 
-export const Page = ({ heading, content }: PageProps) => {
+type PageProps = {
+  page_data: BasePage;
+  sponsor_list: FeatureItem[];
+};
+
+export const Page = ({ page_data, sponsor_list }: PageProps) => {
   return (
     <>
       <Container>
-        <Title color="brand-red">{heading}</Title>
+        <Title color="brand-red">{page_data.heading}</Title>
       </Container>
       <Container>
-        <Text dangerouslySetInnerHTML={{ __html: content }} />
+        <Text dangerouslySetInnerHTML={{ __html: page_data.content }} />
+        <Divider sx={{ margin: "8px 0px" }} />
+        <FeatureList items={sponsor_list} />
       </Container>
     </>
   );
 };
 
 export const query = {
-  model: "items/our_sponsors",
+  page_data: { model: "items/our_sponsors" },
+  sponsor_list: { model: "items/sponsor_list" },
 };
 
 Page.getLayout = (page: React.ReactNode) => {

@@ -90,36 +90,45 @@ export const render = async (pageContext: PageContextServer) => {
 export const onBeforeRender = async (pageContext: PageContextServer) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { query } = pageContext.exports as any;
-  if (!query || !query.model) return null;
+  if (!query) return null;
+  const query_keys = Object.keys(query);
+  if (!query_keys.length) return null;
 
-  const { fetch } = new Stande({
-    base_url: web_config.cms_host,
-  });
+  const response_data = await Promise.all(
+    query_keys.map(async (query_key) => {
+      const query_data = query[query_key];
 
-  const response = await fetch(query.model, {
-    method: query.method || "get",
-    parameters: query.parameters,
-    ...(!query.method || query.method === "get"
-      ? {}
-      : {
-          body: {
-            query: {
-              fields: query.select?.join(","),
-              filter: query.filter,
-              sort: query.sort,
-            },
-          },
-        }),
-  });
+      const { fetch } = new Stande({
+        base_url: web_config.cms_host,
+      });
 
-  if (!response.ok) return null;
+      const response = await fetch(query_data.model, {
+        method: query_data.method || "get",
+        parameters: query_data.parameters,
+        ...(!query_data.method || query_data.method === "get"
+          ? {}
+          : {
+              body: {
+                query: {
+                  fields: query_data.select?.join(","),
+                  filter: query_data.filter,
+                  sort: query_data.sort,
+                },
+              },
+            }),
+      });
 
-  const response_data = (await response.json()).data;
-  const is_array = Array.isArray(response_data);
+      if (!response.ok) return null;
+      return (await response.json()).data;
+    })
+  );
 
   return {
     pageContext: {
-      pageProps: is_array ? { data: response_data } : response_data,
+      pageProps: response_data.reduce(
+        (acc, x, index) => ({ ...acc, [query_keys[index]]: x || {} }),
+        {}
+      ),
     },
   };
 };

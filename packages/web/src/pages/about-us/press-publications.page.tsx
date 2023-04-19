@@ -1,13 +1,21 @@
 import React from "react";
 
-import { Container, Text, Title } from "@mantine/core";
+import { Container, Divider, Text, Title } from "@mantine/core";
 
-import { LayoutDefault } from "@components/layouts";
 import { BasePage } from "@lib/shared";
 
-type PageProps = BasePage;
+import { LayoutDefault } from "@components/layouts";
+import { FeatureItem, FeatureList } from "@components/display/list";
 
-export const Page = ({ heading, content }: PageProps) => {
+type PageProps = {
+  page_data: BasePage;
+  press_publications: (FeatureItem & BasePage)[];
+};
+
+export const Page = ({
+  page_data: { heading, content },
+  press_publications,
+}: PageProps) => {
   return (
     <>
       <Container>
@@ -15,13 +23,22 @@ export const Page = ({ heading, content }: PageProps) => {
       </Container>
       <Container>
         <Text dangerouslySetInnerHTML={{ __html: content }} />
+        <Divider sx={{ margin: "8px 0px" }} />
+        <FeatureList
+          items={press_publications.map((x) => ({
+            ...x,
+            name: x.heading,
+            hide_link: true,
+          }))}
+        />
       </Container>
     </>
   );
 };
 
 export const query = {
-  model: "items/press_publications",
+  page_data: { model: "items/press_publications" },
+  press_publications: { model: "items/press_publications_list" },
 };
 
 Page.getLayout = (page: React.ReactNode) => {

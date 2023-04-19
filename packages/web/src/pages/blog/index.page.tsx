@@ -5,9 +5,10 @@ import { Box, Container, Pagination, Title } from "@mantine/core";
 import { ArticleCard } from "@components/display/article";
 import { BaseBlogPost } from "@lib/shared";
 
-type PageProps = { data?: BaseBlogPost[] };
-
-export const Page = ({ data: posts }: PageProps) => {
+type PageProps = {
+  blog_posts: BaseBlogPost[];
+};
+export const Page = ({ blog_posts }: PageProps) => {
   const [activePage, setPage] = useState(1);
   return (
     <>
@@ -41,7 +42,7 @@ export const Page = ({ data: posts }: PageProps) => {
             },
           }}
         >
-          {posts
+          {blog_posts
             ?.sort(
               (a, b) =>
                 new Date(b.date_created).getTime() -
@@ -58,15 +59,17 @@ export const Page = ({ data: posts }: PageProps) => {
 };
 
 export const query = {
-  model: "items/blog_post",
-  method: "search",
-  select: ["*", "user_created.*"],
-  parameters: {
-    sort: "date_created",
-  },
-  filter: {
-    status: {
-      _eq: "published",
+  blog_posts: {
+    model: "items/blog_post",
+    method: "search",
+    select: ["*", "user_created.*"],
+    parameters: {
+      sort: "date_created",
+    },
+    filter: {
+      status: {
+        _eq: "published",
+      },
     },
   },
 };

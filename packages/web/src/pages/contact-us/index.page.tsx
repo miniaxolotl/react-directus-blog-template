@@ -23,9 +23,11 @@ import {
 import { Stande } from "@lib/stande";
 import { web_config } from "@lib/config";
 
-type PageProps = BasePage;
+type PageProps = {
+  page_data: BasePage;
+};
 
-export const Page = ({ heading, content }: PageProps) => {
+export const Page = ({ page_data: { heading, content } }: PageProps) => {
   const [formSuccess, setFormSuccess] = useState<boolean | null>(null);
 
   const { post } = new Stande({
@@ -129,7 +131,7 @@ export const Page = ({ heading, content }: PageProps) => {
 };
 
 export const query = {
-  model: "items/contact_information",
+  page_data: { model: "items/contact_information" },
 };
 
 Page.getLayout = (page: React.ReactNode) => {
