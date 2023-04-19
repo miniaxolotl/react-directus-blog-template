@@ -7,7 +7,7 @@ import { base_config, web_config } from "@lib/config";
 import { PageContextServer } from "@lib/vite-react";
 
 // import logo from "@assets/logo.svg";
-const logo = "/assets/logo.svg";
+// const logo = "/assets/logo.svg";
 import { PageShell } from "./pages";
 
 // See https://vite-plugin-ssr.com/data-fetching
@@ -41,7 +41,7 @@ export const render = async (pageContext: PageContextServer) => {
 
   // See https://vite-plugin-ssr.com/head
   const title = documentProps.title || base_config.app_title;
-  const description = documentProps.description || base_config.app_title;
+  const description = documentProps.description || base_config.app_description;
 
   const documentHtml = escapeInject`
 		<!DOCTYPE html>
@@ -52,21 +52,23 @@ export const render = async (pageContext: PageContextServer) => {
         <meta name="description" content="${description}" />
         <title>${title}</title>
 				<link rel="manifest" href="/manifest.json">
-        <link rel="icon" href="${logo}" />
+        <link rel="icon" href="https://${web_config.host}/favicon.svg" />
 				
 				<!-- Open Graph / Facebook -->
 				<meta property="og:type" content="website">
 				<meta property="og:url" content="https://${web_config.web_host}">
 				<meta property="og:title" content="${web_config.app_title}">
 				<meta property="og:description" content="${web_config.app_description}">
-				<meta property="og:image" content="/assets/logo.svg">
+				<meta property="og:image" content="https://${web_config.host}/assets/logo.png">
 
 				<!-- Twitter -->
 				<meta property="twitter:card" content="summary_large_image">
 				<meta property="twitter:url" content="https://${web_config.web_host}">
 				<meta property="twitter:title" content="${web_config.app_title}">
 				<meta property="twitter:description" content="${web_config.app_description}">
-				<meta property="twitter:image" content="/assets/logo.svg">
+				<meta property="twitter:image" content="https://${
+          web_config.host
+        }/assets/logo.png">
 
 				<style>.hideUnstyled { display: none }</style>
       </head>
